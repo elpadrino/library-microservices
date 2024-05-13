@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: libgateway
+  config:
+    import: optional:configserver:http://localhost:8888

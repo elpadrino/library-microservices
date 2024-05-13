@@ -1,0 +1,30 @@
+eureka:
+  client:
+    register-with-eureka: false
+feign:
+  hystrix:
+    enabled:true
+server:
+  port: 8223
+spring:
+  application:
+    name: libgateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: book
+          uri: http://localhost:8091
+          predicates:
+            - Path=/api/v1/books/**
+        - id: library
+          uri: http://localhost:8071
+          predicates:
+            - Path=/api/v1/libraries/**
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
